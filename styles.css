@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+}
+
+#main-area {
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#frame-list {
+    min-width: 12ch;
+    background-color: hsl(143, 100%, 68%);
+    display: block;
+    overflow-y: auto;
+}
+
+#frame-list .sprite {
+    padding-left: 4px;
+    background-color: color-mix(
+        in oklab,
+        hsl(143, 93%, 58%),
+        var(--sprite-color) 25%
+    );
+}
+
+#frame-list .frame {
+    padding-left: 8px;
+}
+
+#frame-list .frame:hover {
+    background-color: #80808040;
+}
+
+#slice-editor-area {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+#slice-viewer {
+    position: relative;
+    min-height: 0;
+    flex-grow: 1;
+}
+
+#slice-properties {
+    min-height: 16em;
+    background-color: hsl(143, 58%, 52%);
+}
