@@ -15,30 +15,32 @@ body {
     background-color: hsl(143, 100%, 68%);
     display: block;
     overflow-y: auto;
-}
 
-#frame-list h2 {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    margin: 0;
-}
+    h2 {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        margin: 0;
+    }
 
-#frame-list .body .sprite {
-    padding-left: 4px;
-    background-color: color-mix(
-        in oklab,
-        hsl(143, 93%, 58%),
-        var(--sprite-color) 25%
-    );
-}
+    .body {
+        .sprite {
+            padding-left: 4px;
+            background-color: color-mix(
+                in oklab,
+                hsl(143, 93%, 58%),
+                var(--sprite-color) 25%
+            );
+        }
 
-#frame-list .body .frame {
-    padding-left: 8px;
-}
+        .frame {
+            padding-left: 8px;
 
-#frame-list .body .frame:hover {
-    background-color: #80808040;
+            &:hover {
+                background-color: #80808040;
+            }
+        }
+    }
 }
 
 #slice-editor-area {
