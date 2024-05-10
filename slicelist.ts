@@ -4,7 +4,7 @@ import { sprites } from "./propertiesfile";
 let frameList: HTMLElement;
 
 addEventListener("load", () => {
-    const elm = document.getElementById("frame-list");
+    const elm = document.querySelector<HTMLElement>("#frame-list .body");
     if (elm == null) {
         throw Error("Could not find viewer.");
     }
