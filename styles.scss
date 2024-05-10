@@ -56,7 +56,28 @@ body {
     flex-grow: 1;
 }
 
-#slice-properties {
+#properties-editor {
     min-height: 16em;
     background-color: hsl(143, 58%, 52%);
+    display: flex;
+
+    h2 {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        margin: 0;
+    }
+
+    canvas {
+        object-fit: contain;
+        object-position: right;
+    }
+
+    input[type="number"] {
+        width: 6ch;
+    }
+}
+
+.spacer {
+    flex-grow: 1;
 }

@@ -13,11 +13,11 @@ export type PropertiesFile = {
 
     sprite_size: [number, number];
     layer_step_size: [number, number];
-    sprites: Record<string, Record<string, SpriteDef>>;
+    sprites: Record<string, Record<string, FrameDef>>;
     sfx: Record<string, string>;
 };
 
-export type SpriteDef = {
+export type FrameDef = {
     offset?: [number, number];
     layers: [number, number][];
     ditherstyle?: number;
@@ -26,7 +26,7 @@ export type SpriteDef = {
     overwrite_layer_step_size?: [number, number];
 };
 
-export type SpriteData = {
+export type FrameData = {
     offset: Vec2;
     layers: Vec2[];
     ditherStyle: number | undefined;
@@ -37,7 +37,7 @@ export type SpriteData = {
 
 export let spriteSize = new Vec2();
 export let stepSize = new Vec2();
-export const sprites = new Map<string, Map<string, SpriteData>>();
+export const sprites = new Map<string, Map<string, FrameData>>();
 
 addEventListener("drop", async (ev) => {
     ev.preventDefault();
@@ -61,7 +61,7 @@ export function parseProperties(data: PropertiesFile) {
         for (const frame of Object.getOwnPropertyNames(data.sprites[spr])) {
             const frameData = data.sprites[spr][frame];
             if (!sprites.has(spr)) {
-                sprites.set(spr, new Map<string, SpriteData>());
+                sprites.set(spr, new Map<string, FrameData>());
             }
             sprites.get(spr)!.set(frame, {
                 offset:
@@ -89,5 +89,5 @@ export function parseProperties(data: PropertiesFile) {
         }
     }
 
-    dispatchEvent(new Event("framelistloaded"))
+    dispatchEvent(new Event("framelistloaded"));
 }

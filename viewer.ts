@@ -1,10 +1,10 @@
 import stc from "string-to-color";
-import { SpriteData, spriteSize, sprites, stepSize } from "./propertiesfile";
+import { FrameData, spriteSize, sprites, stepSize } from "./propertiesfile";
 import Vec2 from "./vec2";
 import chroma from "chroma-js";
 
 let viewer: HTMLCanvasElement;
-let viewerCtx: CanvasRenderingContext2D;
+let ctx: CanvasRenderingContext2D;
 
 const viewerTransform = {
     coords: new Vec2(),
@@ -31,8 +31,8 @@ let hoveredSlice: SliceInfo | undefined = undefined;
 let selectedSlice: SliceFrameInfo | undefined = undefined;
 
 addEventListener("load", () => {
-    const v = document.getElementById("slice-viewer");
-    if (v == null || !(v instanceof HTMLCanvasElement)) {
+    const v = document.querySelector<HTMLCanvasElement>("#slice-viewer");
+    if (v == null) {
         throw Error("Could not find viewer.");
     }
 
@@ -56,11 +56,11 @@ addEventListener("load", () => {
 
     viewer = v;
 
-    const ctx = v.getContext("2d");
+    const viewerCtx = v.getContext("2d");
     if (ctx == null) {
         throw Error("Could not get 2D rendering context.");
     }
-    viewerCtx = ctx;
+    ctx = viewerCtx!;
 
     const r = () => {
         requestAnimationFrame(r);
@@ -115,24 +115,22 @@ function viewerTransformPoint(v: Vec2) {
 }
 
 function viewerDraw() {
-    const ctx = viewerCtx;
-
     ctx.reset();
 
     ctx.imageSmoothingEnabled = false;
 
-    drawTransparentGrid(ctx);
+    drawTransparentGrid();
 
-    drawSpritesheet(ctx);
+    drawSpritesheet();
 
-    drawSliceOutlines(ctx);
+    drawSliceOutlines();
 
-    drawDebugTransformCoords(ctx);
+    drawDebugTransformCoords();
 
-    drawPointerPosition(ctx);
+    drawPointerPosition();
 }
 
-function drawTransparentGrid(ctx: CanvasRenderingContext2D) {
+function drawTransparentGrid() {
     ctx.save();
 
     for (let y = 0; y < 16; y++) {
@@ -145,7 +143,7 @@ function drawTransparentGrid(ctx: CanvasRenderingContext2D) {
     ctx.restore;
 }
 
-function drawSpritesheet(ctx: CanvasRenderingContext2D) {
+function drawSpritesheet() {
     const zoom = getViewerZoom();
 
     ctx.save();
@@ -166,7 +164,7 @@ function drawSpritesheet(ctx: CanvasRenderingContext2D) {
     ctx.restore();
 }
 
-function drawSliceOutlines(ctx: CanvasRenderingContext2D) {
+function drawSliceOutlines() {
     ctx.save();
 
     ctx.transform(
@@ -190,7 +188,7 @@ function drawSliceOutlines(ctx: CanvasRenderingContext2D) {
             ctx.strokeStyle = chroma(stc(slice.sprite))
                 .darken(slice.frame != undefined ? 2 : 0)
                 .css("hsl");
-            drawSingleSliceOutline(ctx, name, frame, false);
+            drawSingleSliceOutline(name, frame, false);
         }
     }
 
@@ -209,7 +207,6 @@ function drawSliceOutlines(ctx: CanvasRenderingContext2D) {
         }
         ctx.strokeStyle = chroma(stc(slice.sprite)).css("hsl");
         drawSingleSliceOutline(
-            ctx,
             slice.frame!,
             sprites.get(slice.sprite)!.get(slice.frame!)!,
             true
@@ -218,7 +215,7 @@ function drawSliceOutlines(ctx: CanvasRenderingContext2D) {
         for (const [spr, frames] of sprites) {
             ctx.strokeStyle = stc(spr);
             for (const [name, frame] of frames) {
-                drawSingleSliceOutline(ctx, name, frame, false);
+                drawSingleSliceOutline(name, frame, false);
             }
         }
     }
@@ -227,9 +224,8 @@ function drawSliceOutlines(ctx: CanvasRenderingContext2D) {
 }
 
 function drawSingleSliceOutline(
-    ctx: CanvasRenderingContext2D,
     name: string,
-    frame: SpriteData,
+    frame: FrameData,
     drawLabel: boolean
 ) {
     const zoom = getViewerZoom();
@@ -261,7 +257,7 @@ function drawSingleSliceOutline(
     }
 }
 
-function drawDebugTransformCoords(ctx: CanvasRenderingContext2D) {
+function drawDebugTransformCoords() {
     const zoom = getViewerZoom();
 
     ctx.save();
@@ -287,7 +283,7 @@ function drawDebugTransformCoords(ctx: CanvasRenderingContext2D) {
     ctx.restore();
 }
 
-function drawPointerPosition(ctx: CanvasRenderingContext2D) {
+function drawPointerPosition() {
     ctx.save();
 
     ctx.font = `16px sans-serif`;
