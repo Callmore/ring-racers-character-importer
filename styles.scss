@@ -17,7 +17,14 @@ body {
     overflow-y: auto;
 }
 
-#frame-list .sprite {
+#frame-list h2 {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    margin: 0;
+}
+
+#frame-list .body .sprite {
     padding-left: 4px;
     background-color: color-mix(
         in oklab,
@@ -26,11 +33,11 @@ body {
     );
 }
 
-#frame-list .frame {
+#frame-list .body .frame {
     padding-left: 8px;
 }
 
-#frame-list .frame:hover {
+#frame-list .body .frame:hover {
     background-color: #80808040;
 }
 
