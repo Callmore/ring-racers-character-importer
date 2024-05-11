@@ -4,9 +4,9 @@ import {
     getFrame,
     getSprite,
     getSprites,
-    spriteSize,
-    stepSize,
-} from "./propertiesfile";
+    getDefaultSpriteSize,
+    getDefaultStepSize,
+} from "./properties";
 import Vec2 from "./vec2";
 import chroma from "chroma-js";
 
@@ -236,8 +236,8 @@ function drawSingleSliceOutline(
     drawLabel: boolean
 ) {
     const zoom = getViewerZoom();
-    const frameSize = frame.overwriteSpriteSize ?? spriteSize;
-    const frameStep = frame.overwriteLayerStepSize ?? stepSize;
+    const frameSize = frame.overwriteSpriteSize ?? getDefaultSpriteSize();
+    const frameStep = frame.overwriteLayerStepSize ?? getDefaultStepSize();
     for (const [i, layer] of frame.layers.entries()) {
         const layerOffset = layer.mul(frameStep).mul(zoom);
         const sizeOffset = frameSize.mul(zoom);
@@ -368,10 +368,12 @@ function checkIsOverSlice() {
     const mousePos = viewerTransformPoint(viewerPointer);
 
     for (const [i, layer] of frame.layers.entries()) {
-        const layerRealTL = layer.mul(frame.overwriteLayerStepSize ?? stepSize);
+        const layerRealTL = layer.mul(
+            frame.overwriteLayerStepSize ?? getDefaultStepSize()
+        );
         const layerRealBR = layer
-            .mul(frame.overwriteLayerStepSize ?? stepSize)
-            .add(frame.overwriteSpriteSize ?? spriteSize);
+            .mul(frame.overwriteLayerStepSize ?? getDefaultStepSize())
+            .add(frame.overwriteSpriteSize ?? getDefaultSpriteSize());
         if (
             mousePos.x >= layerRealTL.x &&
             mousePos.x <= layerRealBR.x &&
@@ -395,7 +397,7 @@ function doLayerDrag() {
     const newPos = dragPos
         .div(
             getFrame(selectedSlice.sprite, selectedSlice.frame)
-                ?.overwriteLayerStepSize ?? stepSize
+                ?.overwriteLayerStepSize ?? getDefaultStepSize()
         )
         .round();
 

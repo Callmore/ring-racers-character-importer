@@ -1,5 +1,5 @@
 import stc from "string-to-color";
-import { getSprites } from "./propertiesfile";
+import { getSprites } from "./properties";
 
 let frameList: HTMLElement;
 
