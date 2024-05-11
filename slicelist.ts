@@ -1,5 +1,5 @@
 import stc from "string-to-color";
-import { sprites } from "./propertiesfile";
+import { getSprites } from "./propertiesfile";
 
 let frameList: HTMLElement;
 
@@ -18,7 +18,7 @@ addEventListener("framelistloaded", (ev) => {
 function rebuildFrameList() {
     const elements = [];
 
-    for (const [spriteName, sprite] of sprites) {
+    for (const [spriteName, sprite] of getSprites()) {
         const elm = document.createElement("div");
         elm.innerText = spriteName;
         elm.classList.add("sprite");

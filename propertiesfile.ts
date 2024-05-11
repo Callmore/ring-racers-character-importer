@@ -37,7 +37,7 @@ export type FrameData = {
 
 export let spriteSize = new Vec2();
 export let stepSize = new Vec2();
-export const sprites = new Map<string, Map<string, FrameData>>();
+const sprites = new Map<string, Map<string, FrameData>>();
 
 addEventListener("drop", async (ev) => {
     ev.preventDefault();
@@ -90,4 +90,27 @@ export function parseProperties(data: PropertiesFile) {
     }
 
     dispatchEvent(new Event("framelistloaded"));
+}
+
+export function getSprite(spriteName: string) {
+    const spr = sprites.get(spriteName);
+    if (spr == undefined) {
+        throw Error(`Failed to retreve sprite ${spriteName}`);
+    }
+    return spr;
+}
+
+export function getFrame(spriteName: string, frameName: string) {
+    const frame = getSprite(spriteName).get(frameName);
+    if (frame == undefined) {
+        throw Error(
+            `Failed to retreve frame ${frameName} from sprite ${spriteName}`
+        );
+    }
+
+    return frame;
+}
+
+export function getSprites() {
+    return sprites.entries();
 }

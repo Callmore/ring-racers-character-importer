@@ -1,5 +1,12 @@
 import stc from "string-to-color";
-import { FrameData, spriteSize, sprites, stepSize } from "./propertiesfile";
+import {
+    FrameData,
+    getFrame,
+    getSprite,
+    getSprites,
+    spriteSize,
+    stepSize,
+} from "./propertiesfile";
 import Vec2 from "./vec2";
 import chroma from "chroma-js";
 
@@ -184,7 +191,7 @@ function drawSliceOutlines() {
         if (slice == undefined) {
             throw Error("No slice?");
         }
-        for (const [name, frame] of sprites.get(slice.sprite)!) {
+        for (const [name, frame] of getSprite(slice.sprite)) {
             ctx.strokeStyle = chroma(stc(slice.sprite))
                 .darken(slice.frame != undefined ? 2 : 0)
                 .css("hsl");
@@ -208,11 +215,11 @@ function drawSliceOutlines() {
         ctx.strokeStyle = chroma(stc(slice.sprite)).css("hsl");
         drawSingleSliceOutline(
             slice.frame!,
-            sprites.get(slice.sprite)!.get(slice.frame!)!,
+            getFrame(slice.sprite, slice.frame!),
             true
         );
     } else {
-        for (const [spr, frames] of sprites) {
+        for (const [spr, frames] of getSprites()) {
             ctx.strokeStyle = stc(spr);
             for (const [name, frame] of frames) {
                 drawSingleSliceOutline(name, frame, false);
@@ -351,7 +358,7 @@ function checkIsOverSlice() {
         return;
     }
 
-    const frame = sprites.get(selectedSlice.sprite)?.get(selectedSlice.frame);
+    const frame = getFrame(selectedSlice.sprite, selectedSlice.frame);
     if (frame == undefined) {
         throw Error(
             `Unable to find sprite: ${selectedSlice.sprite}${selectedSlice.frame}`
@@ -379,7 +386,7 @@ function checkIsOverSlice() {
 }
 
 function doLayerDrag() {
-    if (draggedInfo == undefined) {
+    if (draggedInfo == undefined || selectedSlice == undefined) {
         return;
     }
 
@@ -387,12 +394,12 @@ function doLayerDrag() {
 
     const newPos = dragPos
         .div(
-            sprites.get(selectedSlice!.sprite)?.get(selectedSlice!.frame)
+            getFrame(selectedSlice.sprite, selectedSlice.frame)
                 ?.overwriteLayerStepSize ?? stepSize
         )
         .round();
 
-    sprites.get(selectedSlice!.sprite)!.get(selectedSlice!.frame)!.layers[
+    getFrame(selectedSlice.sprite, selectedSlice.frame).layers[
         draggedInfo.index
     ] = newPos.round();
 }

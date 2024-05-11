@@ -21,77 +21,125 @@
                     </section>
                     <section>
                         <h2>Sprite</h2>
+                        <label>
+                            Identifier
+                            <br />
+                            <input type="text" pattern="[A-Z]{1,4}" />
+                        </label>
                     </section>
                     <section>
                         <h2>Frame</h2>
                         <div>
                             <label>offset</label>
-                            <br>
-                            <label for="frame-offset-x">X</label>
-                            <input
-                                type="number"
-                                id="frame-offset-x"
-                                value="0"
-                            />
-                            <label for="frame-offset-y">Y</label>
-                            <input
-                                type="number"
-                                id="frame-offset-y"
-                                value="0"
-                            />
+                            <br />
+                            <label>
+                                X
+                                <input
+                                    type="number"
+                                    id="frame-offset-x"
+                                    value="0"
+                                />
+                            </label>
+                            <label>
+                                Y
+                                <input
+                                    type="number"
+                                    id="frame-offset-y"
+                                    value="0"
+                                />
+                            </label>
                         </div>
                         <div>
-                            <label for="frame-dither-style">ditherStyle</label>
-                            <input
-                                type="number"
-                                name="dither-style"
-                                id="frame-dither-style"
-                                min="0"
-                                max="4"
-                                value="0"
-                            />
+                            <label>
+                                ditherStyle
+                                <input
+                                    type="number"
+                                    name="dither-style"
+                                    id="frame-dither-style"
+                                    min="0"
+                                    max="4"
+                                    value="0"
+                                />
+                            </label>
                         </div>
                         <div>
-                            <label for="frame-flip">flip</label>
-                            <input type="checkbox" id="frame-flip" />
+                            <label>
+                                flip
+                                <input type="checkbox" id="frame-flip" />
+                            </label>
                         </div>
                         <div>
-                            <label>overwriteSpriteSize</label>
-                            <input type="checkbox" id="frame-overwrite-sprite-size-enabled" />
-                            <br>
-                            <label for="frame-overwrite-sprite-size-x">X</label>
-                            <input
-                                type="number"
-                                id="frame-overwrite-sprite-size-x"
-                                value="0"
-                            />
-                            <label for="frame-overwrite-sprite-size-y">Y</label>
-                            <input
-                                type="number"
-                                id="frame-overwrite-sprite-size-y"
-                                value="0"
-                            />
+                            <label>
+                                overwriteSpriteSize
+                                <input
+                                    type="checkbox"
+                                    id="frame-overwrite-sprite-size-enabled"
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                X
+                                <input
+                                    type="number"
+                                    id="frame-overwrite-sprite-size-x"
+                                    value="0"
+                                />
+                            </label>
+                            <label>
+                                Y
+                                <input
+                                    type="number"
+                                    id="frame-overwrite-sprite-size-y"
+                                    value="0"
+                                />
+                            </label>
                         </div>
                         <div>
-                            <label>overwriteLayerStepSize</label>
-                            <input type="checkbox" id="frame-overwrite-layer-step-size-enabled" />
-                            <br>
-                            <label for="frame-overwrite-layer-step-size-x">X</label>
-                            <input
-                                type="number"
-                                id="frame-overwrite-layer-step-size-x"
-                                value="0"
-                            />
-                            <label for="frame-overwrite-layer-step-size-y">Y</label>
-                            <input
-                                type="number"
-                                id="frame-overwrite-layer-step-size-y"
-                                value="0"
-                            />
+                            <label>
+                                overwriteLayerStepSize
+                                <input
+                                    type="checkbox"
+                                    id="frame-overwrite-layer-step-size-enabled"
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                X
+                                <input
+                                    type="number"
+                                    id="frame-overwrite-layer-step-size-x"
+                                    value="0"
+                                />
+                            </label>
+                            <label>
+                                Y
+                                <input
+                                    type="number"
+                                    id="frame-overwrite-layer-step-size-y"
+                                    value="0"
+                                />
+                            </label>
                         </div>
                     </section>
                     <section>
                         <h2>Layers</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">X</th>
+                                    <th scope="col">Y</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <th><input type="number" /></th>
+                                <th><input type="number" /></th>
+                            </tr>
+                            <tr>
+                                <th><input type="number" /></th>
+                                <th><input type="number" /></th>
+                            </tr>
+                        </table>
                     </section>
 
                     <div class="spacer"></div>
