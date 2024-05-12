@@ -1,4 +1,4 @@
-import chroma, { ChromaStatic } from "chroma-js";
+import chroma from "chroma-js";
 import Vec2 from "./vec2";
 
 export type KartmakerProperties = {
