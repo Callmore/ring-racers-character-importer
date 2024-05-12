@@ -81,13 +81,13 @@ addEventListener("drop", async (ev) => {
     }
 
     if (f.type == "text/plain" || f.type == "application/json") {
-        properties = parseProperties(JSON.parse(await f.text()));
+        properties = parseKartmakerProperties(JSON.parse(await f.text()));
         console.log(properties);
         dispatchEvent(new Event("framelistloaded"));
     }
 });
 
-export function parseProperties(data: KartmakerProperties) {
+export function parseKartmakerProperties(data: KartmakerProperties) {
     const spriteSize = new Vec2(data.sprite_size[0], data.sprite_size[1]);
     const stepSize = new Vec2(data.layer_step_size[0], data.layer_step_size[1]);
 
