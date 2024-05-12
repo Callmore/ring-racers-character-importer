@@ -1,4 +1,4 @@
-import "./properties";
+import "./skin";
 import "./viewer";
 import "./slicelist";
 

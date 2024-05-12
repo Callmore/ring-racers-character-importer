@@ -6,7 +6,7 @@ import {
     getSprites,
     getDefaultSpriteSize,
     getDefaultStepSize,
-} from "./properties";
+} from "./skin";
 import Vec2 from "./vec2";
 import chroma from "chroma-js";
 
