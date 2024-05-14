@@ -1,8 +1,9 @@
 body {
     margin: 0;
+    font-family: sans-serif;
 }
 
-#main-area {
+main {
     display: flex;
     position: fixed;
     width: 100vw;
@@ -10,18 +11,18 @@ body {
     overflow: hidden;
 }
 
+h2 {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    margin: 0;
+}
+
 #frame-list {
     min-width: 12ch;
     background-color: hsl(143, 100%, 68%);
     display: block;
     overflow-y: auto;
-
-    h2 {
-        position: sticky;
-        top: 0;
-        background-color: white;
-        margin: 0;
-    }
 
     .body {
         .sprite {
@@ -57,27 +58,130 @@ body {
 }
 
 #properties-editor {
-    min-height: 12em;
+    max-height: 16em;
     background-color: hsl(143, 58%, 52%);
     display: flex;
 
-    h2 {
-        position: sticky;
-        top: 0;
-        background-color: white;
-        margin: 0;
+    > section {
+        overflow-y: auto;
     }
 
     canvas {
         object-fit: contain;
         object-position: right;
     }
+}
 
+section {
+    input[type="text"] {
+        padding: none;
+        border: none;
+        border-bottom: solid thin gray;
+        background-color: #fff4;
+    }
     input[type="number"] {
         width: 6ch;
+        padding: none;
+        border: none;
+        border-bottom: solid thin gray;
+        background-color: #fff4;
+    }
+}
+
+.property-container {
+    background-color: limegreen;
+    padding: 4px;
+    margin: 4px;
+    box-shadow: 0 0 8px limegreen;
+}
+
+.layer-control-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    .layer-up {
+        grid-row: 1/2;
+
+        background-color: skyblue;
+    }
+
+    .layer-down {
+        grid-row: 2/3;
+
+        background-color: skyblue;
+    }
+
+    .layer-delete {
+        grid-row: 1/3;
+
+        background-color: skyblue;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+}
+
+.property-row {
+    display: flex;
+
+    > * {
+        flex-grow: 1;
     }
 }
 
 .spacer {
     flex-grow: 1;
+}
+
+#sounds-header {
+    display: flex;
+    gap: 4px;
+
+    > * {
+        margin: 0;
+    }
+
+    > #sounds-header-id {
+        width: 3ch;
+    }
+
+    > #sounds-header-path {
+        width: 6ch;
+        flex-grow: 1;
+    }
+}
+
+.sounds-entry {
+    display: flex;
+    gap: 4px;
+}
+
+.sounds-id {
+    width: 3ch;
+}
+
+.sounds-path {
+    width: 6ch;
+    flex-grow: 1;
+}
+
+#skin-properties {
+    overflow-y: auto;
+}
+
+.rival-entry {
+    display: flex;
+
+    .rival-name {
+        width: 6ch;
+        flex-grow: 1;
+    }
+}
+
+.transparent-colors-entry {
+    display: flex;
+
+    .transparent-colors-color {
+        flex-grow: 1;
+    }
 }

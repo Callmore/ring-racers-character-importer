@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <div id="main-area">
+        <main>
             <section id="frame-list">
                 <h2>Slices</h2>
                 <div class="body"></div>
@@ -17,19 +17,18 @@
                 <canvas id="slice-viewer" width="960" height="600"></canvas>
                 <div id="properties-editor">
                     <section>
-                        <h2>Properties</h2>
-                    </section>
-                    <section>
                         <h2>Sprite</h2>
-                        <label>
-                            Identifier
-                            <br />
-                            <input type="text" pattern="[A-Z]{1,4}" />
-                        </label>
+                        <div class="property-container">
+                            <label>
+                                Identifier
+                                <br />
+                                <input type="text" pattern="[A-Z]{1,4}" />
+                            </label>
+                        </div>
                     </section>
                     <section>
                         <h2>Frame</h2>
-                        <div>
+                        <div class="property-container">
                             <label>offset</label>
                             <br />
                             <label>
@@ -49,7 +48,7 @@
                                 />
                             </label>
                         </div>
-                        <div>
+                        <div class="property-container">
                             <label>
                                 ditherStyle
                                 <input
@@ -62,13 +61,13 @@
                                 />
                             </label>
                         </div>
-                        <div>
+                        <div class="property-container">
                             <label>
                                 flip
                                 <input type="checkbox" id="frame-flip" />
                             </label>
                         </div>
-                        <div>
+                        <div class="property-container">
                             <label>
                                 overwriteSpriteSize
                                 <input
@@ -94,7 +93,7 @@
                                 />
                             </label>
                         </div>
-                        <div>
+                        <div class="property-container">
                             <label>
                                 overwriteLayerStepSize
                                 <input
@@ -131,14 +130,38 @@
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <th><input type="number" /></th>
-                                <th><input type="number" /></th>
-                            </tr>
-                            <tr>
-                                <th><input type="number" /></th>
-                                <th><input type="number" /></th>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th><input type="number" /></th>
+                                    <th><input type="number" /></th>
+                                    <th class="layer-control-buttons">
+                                        <button class="layer-up" disabled>
+                                            &#129093;
+                                        </button>
+                                        <button class="layer-delete">
+                                            &#128473;
+                                        </button>
+                                        <button class="layer-down">
+                                            &#129095;
+                                        </button>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th><input type="number" /></th>
+                                    <th><input type="number" /></th>
+                                    <th class="layer-control-buttons">
+                                        <button class="layer-up">
+                                            &#129093;
+                                        </button>
+                                        <button class="layer-delete">
+                                            &#128473;
+                                        </button>
+                                        <button class="layer-down" disabled>
+                                            &#129095;
+                                        </button>
+                                    </th>
+                                </tr>
+                            </tbody>
                         </table>
                     </section>
 
@@ -147,6 +170,282 @@
                     <canvas width="1" height="1"></canvas>
                 </div>
             </div>
-        </div>
+            <section id="skin-properties">
+                <h2>Properties</h2>
+                <div class="property-container">
+                    <label>
+                        Name
+                        <br />
+                        <input type="text" id="input-name" />
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Real Name
+                        <br />
+                        <input type="text" id="input-real-name" />
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Prefix
+                        <br />
+                        <input type="text" />
+                    </label>
+                </div>
+                <div class="property-row">
+                    <div class="property-container">
+                        <label>
+                            speed
+                            <br />
+                            <input
+                                type="number"
+                                min="1"
+                                max="9"
+                                value="5"
+                                id="input-speed"
+                            />
+                        </label>
+                    </div>
+                    <div class="property-container">
+                        <label>
+                            weight
+                            <br />
+                            <input
+                                type="number"
+                                min="1"
+                                max="9"
+                                value="5"
+                                id="input-weight"
+                            />
+                        </label>
+                    </div>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Start Color
+                        <br />
+                        <input
+                            type="number"
+                            min="0"
+                            max="255"
+                            value="96"
+                            id="input-start-color"
+                        />
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Prefered Color
+                        <br />
+                        <input
+                            type="text"
+                            list="datalist-pref-colors"
+                            id="input-prefered-color"
+                        />
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Rivals
+                        <br />
+                        <div id="rivals-list">
+                            <div class="rival-entry">
+                                <input
+                                    type="text"
+                                    class="rival-name"
+                                    value="Eggman"
+                                /><button class="rival-delete">
+                                    &#128473;
+                                </button>
+                            </div>
+                            <div class="rival-entry">
+                                <input
+                                    type="text"
+                                    class="rival-name"
+                                    value="Tails"
+                                /><button class="rival-delete">
+                                    &#128473;
+                                </button>
+                            </div>
+                            <div class="rival-entry">
+                                <input
+                                    type="text"
+                                    class="rival-name"
+                                    value="Knuckles"
+                                /><button class="rival-delete">
+                                    &#128473;
+                                </button>
+                            </div>
+                            <div class="rival-entry">
+                                <input
+                                    type="text"
+                                    class="rival-name"
+                                    value="Sonic"
+                                /><button class="rival-delete">
+                                    &#128473;
+                                </button>
+                            </div>
+                        </div>
+                        <button id="rival-add">+</button>
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Transparent Colors
+                        <br />
+                        <div id="transparent-colors-list">
+                            <div class="transparent-colors-entry">
+                                <input
+                                    type="color"
+                                    class="transparent-colors-color"
+                                />
+                                <button class="transparent-colors-delete">
+                                    &#128473;
+                                </button>
+                            </div>
+                        </div>
+                        <button>+</button>
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Default Sprite Size
+                        <br />
+                        <label>X <input type="number" /></label>
+                        <label>Y <input type="number" /></label>
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Default Step Size
+                        <br />
+                        <label>X <input type="number" /></label>
+                        <label>Y <input type="number" /></label>
+                    </label>
+                </div>
+                <div class="property-container">
+                    <label>
+                        Sounds
+                        <div id="sounds-header">
+                            <p id="sounds-header-id">ID</p>
+                            <p id="sounds-header-path">Path</p>
+                            <p id="sounds-header-delete"></p>
+                        </div>
+                        <div id="sounds-list">
+                            <div class="sounds-entry">
+                                <input type="text" class="sounds-id" />
+                                <input type="text" class="sounds-path" />
+                                <button class="sounds-delete">&#128473;</button>
+                            </div>
+                        </div>
+                        <button id="sounds-add">+</button>
+                    </label>
+                </div>
+            </section>
+        </main>
     </body>
+
+    <datalist id="datalist-pref-colors">
+        <option value="White"></option>
+        <option value="Silver"></option>
+        <option value="Grey"></option>
+        <option value="Nickel"></option>
+        <option value="Black"></option>
+        <option value="Skunk"></option>
+        <option value="Fairy"></option>
+        <option value="Popcorn"></option>
+        <option value="Artichoke"></option>
+        <option value="Pigeon"></option>
+        <option value="Sepia"></option>
+        <option value="Beige"></option>
+        <option value="Caramel"></option>
+        <option value="Peach"></option>
+        <option value="Brown"></option>
+        <option value="Leather"></option>
+        <option value="Pink"></option>
+        <option value="Rose"></option>
+        <option value="Cinnamon"></option>
+        <option value="Ruby"></option>
+        <option value="Raspberry"></option>
+        <option value="Red"></option>
+        <option value="Crimson"></option>
+        <option value="Maroon"></option>
+        <option value="Lemonade"></option>
+        <option value="Scarlet"></option>
+        <option value="Ketchup"></option>
+        <option value="Dawn"></option>
+        <option value="Sunslam"></option>
+        <option value="Creamsicle"></option>
+        <option value="Orange"></option>
+        <option value="Rosewood"></option>
+        <option value="Tangerine"></option>
+        <option value="Tan"></option>
+        <option value="Cream"></option>
+        <option value="Gold"></option>
+        <option value="Royal"></option>
+        <option value="Bronze"></option>
+        <option value="Copper"></option>
+        <option value="Yellow"></option>
+        <option value="Mustard"></option>
+        <option value="Banana"></option>
+        <option value="Olive"></option>
+        <option value="Crocodile"></option>
+        <option value="Peridot"></option>
+        <option value="Vomit"></option>
+        <option value="Garden"></option>
+        <option value="Lime"></option>
+        <option value="Handheld"></option>
+        <option value="Tea"></option>
+        <option value="Pistachio"></option>
+        <option value="Moss"></option>
+        <option value="Camouflage"></option>
+        <option value="Mint"></option>
+        <option value="Green"></option>
+        <option value="Pinetree"></option>
+        <option value="Turtle"></option>
+        <option value="Swamp"></option>
+        <option value="Dream"></option>
+        <option value="Plague"></option>
+        <option value="Emerald"></option>
+        <option value="Algae"></option>
+        <option value="Aquamarine"></option>
+        <option value="Turquoise"></option>
+        <option value="Teal"></option>
+        <option value="Robin"></option>
+        <option value="Cyan"></option>
+        <option value="Jawz"></option>
+        <option value="Cerulean"></option>
+        <option value="Navy"></option>
+        <option value="Platinum"></option>
+        <option value="Slate"></option>
+        <option value="Steel"></option>
+        <option value="Thunder"></option>
+        <option value="Nova"></option>
+        <option value="Rust"></option>
+        <option value="Wristwatch"></option>
+        <option value="Jet"></option>
+        <option value="Sapphire"></option>
+        <option value="Ultramarine"></option>
+        <option value="Periwinkle"></option>
+        <option value="Blue"></option>
+        <option value="Midnight"></option>
+        <option value="Blueberry"></option>
+        <option value="Thistle"></option>
+        <option value="Purple"></option>
+        <option value="Pastel"></option>
+        <option value="Moonset"></option>
+        <option value="Dusk"></option>
+        <option value="Violet"></option>
+        <option value="Magenta"></option>
+        <option value="Fuchsia"></option>
+        <option value="Toxic"></option>
+        <option value="Mauve"></option>
+        <option value="Lavender"></option>
+        <option value="Byzantium"></option>
+        <option value="Pomegranate"></option>
+        <option value="Lilac"></option>
+        <option value="Blossom"></option>
+        <option value="Taffy"></option>
+    </datalist>
 </html>
